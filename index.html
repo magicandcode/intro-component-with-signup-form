@@ -72,7 +72,8 @@
      */
     header,
     main,
-    footer {
+    footer,
+    form{
       box-sizing: border-box;
       margin: 0 auto;
       padding: 2.5rem;
@@ -109,7 +110,7 @@
         grid-column: 1/2;
         
         margin: 0;
-        padding: 0 0 2em 0;
+        padding: 0 0 3em 0;
       }
     
       p.try-it-free {
@@ -122,17 +123,68 @@
      * Form
      */
     form {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 .8rem  hsl(0, 0%, 0%, 20%);
       display: grid;
-      grid-row-gap: .5rem;
-      grid-column-gap: 1rem;
+      grid-row-gap: 1.6rem;
       
+      padding: 2rem;
       width: 100%;
     }
-    
-    label {
-      display: none; /* Todo: Position left outside of screen */
-    }
-    
+
+      form input {
+        border: .1rem #dedede solid;
+        border-radius: .5rem;
+        font-weight: var(--semibold-weight);
+        padding: 1em;
+        margin: 0;
+      }
+
+      form input:focus,
+      form input:active {
+        border-color: var(--neutral-color-dark);
+        box-shadow: none;
+        color: #000;
+        outline: 0;
+      }
+
+      form button {
+        background-color: var(--primary-color-dark);
+        border: 0;
+        border-radius: .5rem;
+        box-shadow: 0 .4rem  hsl(154, 59%, 42%);
+        color: var(--main-font-color);
+        font-size: var(--main-font-size);
+        letter-spacing: .05rem;
+        line-height: 1;
+        text-transform: uppercase;
+        padding: 2rem 5rem 1.5rem;
+      }
+
+      form input,
+      form button {
+        font-size: 1.4rem;
+      }
+
+      form p {
+        padding: 0 3rem;
+        color: var(--neutral-color-light);
+        font-size: 1.1rem;
+        font-weight: var(--medium-weight);
+        line-height: 2;
+      }
+
+      form a {
+        color: var(--primary-color-light);
+        font-weight: var(--bold-weight);
+        text-decoration: none;
+      }
+
+      form label {
+        display: none; /* Todo: Position left outside of screen */
+      }
+
     /**
      * Font decorations
      */
@@ -169,21 +221,21 @@
     </p>
     <form action="#" method="post">
       <label for="first-name">First Name</label>
-      <input type="text" id="first-name" name="first-name" value="" placeholder="First Name">
+      <input type="text" id="first-name" name="first-name" value="" placeholder="First Name" required>
       <label for="last-name">Last Name</label>
-      <input type="text" id="last-anme" name="last-name" value="" placeholder="Last Name">
+      <input type="text" id="last-anme" name="last-name" value="" placeholder="Last Name" required>
       <label for="email-address">Email Address</label>
-      <input type="email" id="email-address" name="email-address" value="" placeholder="Email Address">
+      <input type="email" id="email-address" name="email-address" value="" placeholder="Email Address" required>
           <label for="email-address">Email Address</label>
-      <input type="password" id="password" name="passowrd" value="" placeholder="Password">
+      <input type="password" id="password" name="passowrd" value="" placeholder="Password" required>
       <button type="submit">Claim your free trial</button>
-      <p>By clicking the button, you are agreeing to our Terms and Services</p>
+      <p>By clicking the button, you are agreeing to our <a href="#">Terms and Services</a></p>
     </form>
   </main>
   <footer>
     <p class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">magicandcode</a>.
+      Coded by <a href="https://github.com/magicandcode/intro-component-with-signup-form">magicandcode</a>.
     </p>
   </footer>
 </body>
