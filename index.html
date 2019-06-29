@@ -44,13 +44,28 @@
       width: 100%;
     }
     
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
       background: var(--primary-color-light) url(images/bg-intro-mobile.png);
+      
+      display: grid;
+      grid-auto-rows: auto;
+      grid-auto-columns: auto;
       
       font-size: var(--main-font-size);
       font-weight: var(--regular-weight);
       text-align: center;
     }
+
+      footer {
+        grid-row: 3/4;
+        grid-column: 1/2;
+      }
+    
     
     /**
      * Main Containers
@@ -63,6 +78,45 @@
       padding: 2.5rem;
       width: 100%;
     }
+        
+    header {
+      grid-row: 1/2;
+      grid-column: 1/2;
+      grid-row-gap: 0;
+      margin: 0;
+      padding: 0 inherit;
+    }
+      header h1 {
+        font-weight: var(--bold-weight);
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin: 2.5em 0 -.6em 0;
+        padding: 0;
+      }
+
+    main {
+      grid-row: 2/3;
+      grid-column: 1/2;
+      display: grid;
+      grid-auto-rows: auto;
+      grid-auto-columns: auto;
+      grid-column-gap: 0;
+      grid-row-gap: 2.3rem;
+    }
+    
+      p.intro {
+        grid-row: 1/2;
+        grid-column: 1/2;
+        
+        margin: 0;
+        padding: 0 0 2em 0;
+      }
+    
+      p.try-it-free {
+        grid-row: 2/3;
+        grid-column: 1/2;
+      }
+    
     
     /**
      * Form
@@ -91,7 +145,6 @@
       background-color: var(--accent-color);
       border-radius: 1rem;
       box-shadow: 0 .8rem  hsl(0, 0%, 0%, 20%);
-      margin-bottom: 2.3rem;
       padding: 2rem 5rem;
     }
     
@@ -109,7 +162,7 @@
     <h1>Learn to code by watching others</h1>
   </header>
   <main>
-    <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
+    <p class="intro">See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
     but understanding how developers think is invaluable.
     </p>
     <p class="try-it-free"><b>Try it free 7 days</b> then $20/mo. thereafter
