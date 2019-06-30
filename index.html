@@ -66,6 +66,10 @@
         grid-column: 1/2;
       }
     
+    main,
+    footer, header {
+outline: 4px solid red;
+    }
     
     /**
      * Main Containers
@@ -73,28 +77,46 @@
     header,
     main,
     footer,
-    form{
+    form {
       box-sizing: border-box;
       margin: 0 auto;
       padding: 2.5rem;
       width: 100%;
     }
-        
+
     header {
+      display: grid;
+      grid-auto-rows: auto;
+      grid-auto-columns: auto;
       grid-row: 1/2;
       grid-column: 1/2;
-      grid-row-gap: 0;
-      margin: 0;
+      grid-row-gap: 2.5rem;
       padding: 0 inherit;
     }
       header h1 {
         font-weight: var(--bold-weight);
         font-size: 2.5rem;
+        
+        grid-column: 1/2;
+        grid-row: 1/2;
+        justify-self: center;
+        align-self: start;
+        
         line-height: 1.2;
-        margin: 2.5em 0 -.6em 0;
+        margin: 3em 0 0 0;
         padding: 0;
       }
-
+    
+      p.intro {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        justify-self: center;
+        align-self: start;
+        
+        margin: 0;
+        padding: 0 0 3em 0;
+      }
+    
     main {
       grid-row: 2/3;
       grid-column: 1/2;
@@ -105,16 +127,8 @@
       grid-row-gap: 2.3rem;
     }
     
-      p.intro {
-        grid-row: 1/2;
-        grid-column: 1/2;
-        
-        margin: 0;
-        padding: 0 0 3em 0;
-      }
-    
       p.try-it-free {
-        grid-row: 2/3;
+        grid-row: 1/2;
         grid-column: 1/2;
       }
     
@@ -204,6 +218,47 @@
      * 
      */
     
+    @media screen and (min-width: 376px) {
+
+      /**
+       * Main Containers Desktop
+       */
+      header,
+      main,
+      footer {
+        width: 90%;
+        max-width: 800px;
+      }
+    }
+    
+    @media screen and (min-width: 550px) {
+
+      /**
+       * Main Containers Desktop
+       */
+      header,
+      main,
+      footer {
+        width: 80%;
+        max-width: 800px;
+      }
+    }
+    
+    @media screen and (min-width: 768px) {
+
+      body {
+        background-image: url(images/bg-intro-desktop.png);
+      }
+      /**
+       * Main Containers Desktop
+       */
+      header,
+      main,
+      footer {
+        width: 70%;
+        max-width: 800px;
+      }
+    }
     
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
@@ -212,11 +267,11 @@
 <body>
   <header>
     <h1>Learn to code by watching others</h1>
-  </header>
-  <main>
     <p class="intro">See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
     but understanding how developers think is invaluable.
     </p>
+  </header>
+  <main>
     <p class="try-it-free"><b>Try it free 7 days</b> then $20/mo. thereafter
     </p>
     <form action="#" method="post">
