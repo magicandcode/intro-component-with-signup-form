@@ -134,7 +134,7 @@
     form {
       background: #fff;
       border-radius: 1rem;
-      box-shadow: 0 .8rem  hsl(0, 0%, 0%, 20%);
+      box-shadow: 0 .8rem hsl(0, 0%, 0%, 20%);
       display: grid;
       grid-row-gap: 1.6rem;
       
@@ -308,11 +308,28 @@
      * Form Validation
      */
     .validation-error {
-      background: url(images/icon-error.svg) no-repeat contain right center;
+      background: no-repeat url(images/icon-error.svg) right .85em center;
       border-color: var(--primary-color-light);
-      padding-right: 4em;
+      padding-right: 3.5em;
     }
     
+    .error-message {
+      color: var(--primary-color-light);
+      font-style: italic;
+      line-height: 1;
+      margin-top: -1em;
+      padding: 0;
+      text-align: right;
+      visibility: hidden;
+    }
+    
+    input.validation-error + p.error-message {
+      visibility: visible;
+    }
+    #free-trial-form input:-internal-autofill-selected {
+      background-color: #fff !important;
+    }
+
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
@@ -330,12 +347,19 @@
     <form action="#" method="post" id="free-trial-form" novalidate>
       <label for="first-name">First Name</label>
       <input type="text" id="first-name" name="first-name" value="" placeholder="First Name" required>
+      <p class="error-message">First name cannot be empty</p>
+      
       <label for="last-name">Last Name</label>
       <input type="text" id="last-anme" name="last-name" value="" placeholder="Last Name" required>
+      <p class="error-message">Last name cannot be empty</p>
+      
       <label for="email-address">Email Address</label>
       <input type="email" id="email-address" name="email-address" value="" placeholder="Email Address" required>
-          <label for="email-address">Email Address</label>
+      <p class="error-message">Looks like this is not an email</p>
+      
       <input type="password" id="password" name="passowrd" value="" placeholder="Password" required>
+      <p class="error-message">Password cannot be empty</p>
+      
       <button type="submit" id="free-trial-submit">Claim your free trial</button>
       <p>By clicking the button, you are agreeing to our <a href="#">Terms and Services</a></p>
     </form>
