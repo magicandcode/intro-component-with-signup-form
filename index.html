@@ -346,18 +346,18 @@
     </p>
     <form action="#" method="post" id="free-trial-form" novalidate>
       <label for="first-name">First Name</label>
-      <input type="text" id="first-name" name="first-name" value="" placeholder="First Name" required>
+      <input @focus="validateTextInput" :class="{ errorClassName: isValidTextInput }" type="text" id="first-name" name="first-name" value="" placeholder="First Name" required>
       <p class="error-message">First name cannot be empty</p>
       
       <label for="last-name">Last Name</label>
-      <input type="text" id="last-anme" name="last-name" value="" placeholder="Last Name" required>
+      <input type="text" id="last-name" name="last-name" value="" placeholder="Last Name" required>
       <p class="error-message">Last name cannot be empty</p>
       
       <label for="email-address">Email Address</label>
       <input type="email" id="email-address" name="email-address" value="" placeholder="Email Address" required>
       <p class="error-message">Looks like this is not an email</p>
       
-      <input type="password" id="password" name="passowrd" value="" placeholder="Password" required>
+      <input type="password" id="password" name="password" value="" placeholder="Password" required>
       <p class="error-message">Password cannot be empty</p>
       
       <button type="submit" id="free-trial-submit">Claim your free trial</button>
@@ -371,6 +371,6 @@
     </p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-  <script src="js/validation.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
