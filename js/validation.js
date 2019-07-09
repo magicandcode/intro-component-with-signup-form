@@ -1,3 +1,4 @@
+/*
 const freeTrialForm = document.getElementById('free-trial-form');
 
 const freeTrialFormFields = document.querySelectorAll('#free-trial-form input');
@@ -16,17 +17,17 @@ freeTrialSubmit.addEventListener('click', e => {
     }
   });
 });
-/*
+
 freeTrialFormFields.forEach(field => {
   const index = Array.prototype.indexOf.call(freeTrialFormFields, field);
   const errorMessage = freeTrialFormErrorMessages[index];
-/*
+
   if(field.value === '') {
       field.classList.add('validation-error');
       errorMessage.getElementsByClassName.visibility = 'visible';
   }
-*/
-  /*
+
+
   field.addEventListener('focus', e => {
     if (field.value === '') {
       field.classList.toggle('validation-error');
