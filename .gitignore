@@ -144,5 +144,5 @@ modules.xml
 
 .DS_Store
 
-# Ignore generated css files when using Sass (scss)
+# Ignore generated css files when using a CSS pre-processor
 css/
