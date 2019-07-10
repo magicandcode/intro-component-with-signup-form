@@ -162,3 +162,6 @@ yarn-error.log
 # End of https://www.gitignore.io/api/vue,vuejs,phpstorm,phpstorm+all
 
 .DS_Store
+
+# Ignore generated css files when using Sass (scss)
+css/
