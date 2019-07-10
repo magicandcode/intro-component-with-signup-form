@@ -145,4 +145,5 @@ modules.xml
 .DS_Store
 
 # Ignore generated css files when using a CSS pre-processor
-css/
+# Not when using GitHub pages
+# css/
