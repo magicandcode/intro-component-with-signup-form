@@ -1,36 +1,16 @@
-
-// Gets form fields to validate, in this case all fields are inputs and the
-// submit button is a button element; safe to select all form inputs
-const freeTrialFormFields = document.querySelectorAll(
-    '#free-trial-form input'
-);
-
-// Sets name of class to indicate an invalid input value
-// Class will be added to or removed from input indicating whether it is
-// invalid or not
+// Sets class to add to invalid form fields
 const validationErrorClass = 'validation-error';
-
-// Gets all error messages to display with error class
-// Error message will be either visible or hidden, depending on its input's
-// validity
-const freeTrialFormErrorMessages = document.querySelectorAll(
-    '.error-message'
-);
-
-// Gets form submit button
-const freeTrialSubmitButton = document.getElementById(
-    'free-trial-submit'
-);
 
 // Checks if form input type is email (requires specific validation rules)
 const  isEmailField = field => field.type === 'email';
 
 // Checks if form input value is valid email
-const isValidEmail = field => field.value.match(
+const isValidEmailField = field => field.value.match(
+    // Simplified RFC 2822 regex
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 );
 
-// Checks if form input value is not empty
+// Checks if form input value is not empty (validation rules for text inputs)
 const isValidTextField = field => field.value !== '';
 
 // Adds error class to input and displays error message
@@ -45,22 +25,16 @@ const removeErrorIndicators = (field, errorMessage) => {
     errorMessage.getElementsByClassName.visibility = 'hidden';
 };
 
+// Checks if form field is valid based on its type and validation rules
 const isValidFormField = field => {
     if (isEmailField(field)) {
-        if (!isValidEmail(field)) {
-            return false;
-        } else {
-            return true;
-        }
-    } else {
-        if (isValidTextField(field)) {
-            return true;
-        } else {
-            return false;
-        }
+        return isValidEmailField(field) || false;
     }
+
+    return isValidTextField(field) || false;
 };
 
+// Adds or removes error indicators from form field based on its validity
 const validateFormField = (field, errorMessage) => {
     if (isValidFormField(field)) {
         removeErrorIndicators(field, errorMessage);
@@ -69,44 +43,48 @@ const validateFormField = (field, errorMessage) => {
     }
 };
 
-freeTrialFormFields.forEach(field => {
-    field.autocomplete = 'off'; // Turns off autocomplete from all form fields
+// Validates form field on supplied events
+const addFormFieldValidationEventListeners = (events, field, errorMessage) => {
+    events.forEach(eventName => {
+       field.addEventListener(
+           eventName,
+           () => validateFormField(field, errorMessage)
+       );
+    });
+};
 
-    // Gets index of current form field to get corresponding error message
-    const index = Array.prototype.indexOf.call(freeTrialFormFields, field);
-    const errorMessage = freeTrialFormErrorMessages[index];
+// Checks and validates each form field on triggered events
+const validateFormFields = form => {
+    const {fields, errorMessages} = form;
 
-    // Adds validation on focus event
-    field.addEventListener(
-        'focus',
-        () => validateFormField(field, errorMessage)
-    );
+    fields.forEach(field => {
+        field.autocomplete = 'off'; // Disables autocomplete for form input
 
-    // Adds validation on blur event
-    field.addEventListener(
-        'blur',
-        () => validateFormField(field, errorMessage)
-    );
+        // Gets index of form field
+        const index = Array.prototype.indexOf.call(fields, field);
 
-    // Adds validation on key up event
-    field.addEventListener(
-        'keyup',
-        () => validateFormField(field, errorMessage)
-    );
-});
+        // Gets error message for form field
+        const errorMessage = errorMessages[index];
 
+        addFormFieldValidationEventListeners(
+            ['focus', 'blur', 'keyup'],
+            field,
+            errorMessage
+        );
+    });
+};
 
-const validateFormOnSubmit = (form) => {
-
+// Validates form fields on form submission
+const validateFormOnSubmit = form => {
     const {fields, errorMessages, submit} = form;
 
     submit.addEventListener('click', e => {
         fields.forEach(field => {
-            // Gets index of current form field to get corresponding error message
+            // Gets index of current form field to get belonging error message
             const index = Array.prototype.indexOf.call(fields, field);
             const errorMessage = errorMessages[index];
 
-            // Adds or removes error indications
+            // Adds or removes error indicators
             validateFormField(field, errorMessage);
 
             // Prevents form to be submitted if any field is invalid
@@ -117,12 +95,18 @@ const validateFormOnSubmit = (form) => {
     });
 };
 
-const freeTrialForm = {
-    fields:  document.querySelectorAll('#free-trial-form input'),
-    errorClass: 'validation-error',
-    errorMessages: document.querySelectorAll('.error-message'),
-    submit: document.getElementById('free-trial-submit')
+// Validates supplied form
+const validateForm = form => {
+    validateFormFields(form); // Validates each field when interacted with
+    validateFormOnSubmit(form); // Validates form before submitting
 };
 
-validateFormFields(freeTrialForm); // Validates each field when interacted with
-validateFormOnSubmit(freeTrialForm); // Validates form before submitting
+// Sets form to validate
+const freeTrialForm = {
+    fields:        document.querySelectorAll('#free-trial-form input'),
+    errorMessages: document.querySelectorAll('.error-message'),
+    submit:        document.getElementById('free-trial-submit')
+};
+
+// Validates form on input for input events and form submission
+validateForm(freeTrialForm);
