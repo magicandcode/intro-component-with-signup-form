@@ -75,6 +75,14 @@ freeTrialFormFields.forEach(field => {
         e => validateField(field, errorMessage, e)
     );
 });
+freeTrialSubmitButton.addEventListener('click', e => {
+   freeTrialFormFields.forEach(field => {
+       const index = Array.prototype.indexOf.call(freeTrialFormFields, field);
+       const errorMessage = document.querySelectorAll('.error-message')[index];
+
+       validateField(field, errorMessage, e);
+   });
+});
 
 
 /*
