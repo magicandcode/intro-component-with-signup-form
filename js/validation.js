@@ -36,6 +36,8 @@ const isValidFormField = field => {
 
 // Adds or removes error indicators from form field based on its validity
 const validateFormField = (field, errorMessage) => {
+    field.placeholder = false;
+
     if (isValidFormField(field)) {
         removeErrorIndicators(field, errorMessage);
     } else {
