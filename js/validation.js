@@ -48,6 +48,7 @@ const validateFormField = (field, errorMessage) => {
 const togglePlaceholder = field => {
     // Gets original placeholder
     const placeholder = field.placeholder;
+
     // Removes placeholder on focus and restores on blur
     field.addEventListener('focus', () => field.placeholder = '');
     field.addEventListener('blur', () => field.placeholder = placeholder);
@@ -56,10 +57,10 @@ const togglePlaceholder = field => {
 // Validates form field on supplied events
 const addFormFieldValidationEventListeners = (events, field, errorMessage) => {
     events.forEach(eventName => {
-       field.addEventListener(
-           eventName,
-           () => validateFormField(field, errorMessage)
-       );
+        field.addEventListener(
+            eventName,
+            () => validateFormField(field, errorMessage)
+        );
     });
 };
 
@@ -76,6 +77,7 @@ const validateFormFields = form => {
         // Gets error message for form field
         const errorMessage = errorMessages[index];
 
+        // Toggles placeholder on focus/blur
         togglePlaceholder(field);
 
         addFormFieldValidationEventListeners(
@@ -101,7 +103,7 @@ const validateFormOnSubmit = form => {
 
             // Prevents form to be submitted if any field is invalid
             if (! isValidFormField(field)) {
-               e.preventDefault();
+                e.preventDefault();
             }
         });
     });
