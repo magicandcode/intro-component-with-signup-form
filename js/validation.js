@@ -36,17 +36,19 @@ const isValidFormField = field => {
 
 // Adds or removes error indicators from form field based on its validity
 const validateFormField = (field, errorMessage) => {
-    const placeholder = field.placeholder;
-
-    field.placeholder = '';
-
     if (isValidFormField(field)) {
         removeErrorIndicators(field, errorMessage);
     } else {
         addErrorIndicators(field, errorMessage);
     }
+};
 
-    field.placeholder = placeholder;
+const togglePlaceholder = field => {
+    // Gets original placeholder
+    const placeholder = field.placeholder;
+    // Removes placeholder on focus and restores on blur
+    field.addEventListener('focus', () => field.placeholder = '');
+    field.addEventListener('blur', () => field.placeholder = placeholder);
 };
 
 // Validates form field on supplied events
@@ -72,8 +74,10 @@ const validateFormFields = form => {
         // Gets error message for form field
         const errorMessage = errorMessages[index];
 
+        togglePlaceholder(field);
+
         addFormFieldValidationEventListeners(
-            ['focus', 'blur', 'keyup'],
+            ['focus', 'blur', 'keydown', 'keyup'],
             field,
             errorMessage
         );
