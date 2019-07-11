@@ -45,6 +45,14 @@ const validateFormField = (field, errorMessage) => {
     }
 };
 
+const togglePlaceholder = field => {
+    // Gets original placeholder
+    const placeholder = field.placeholder;
+    // Removes placeholder on focus and restores on blur
+    field.addEventListener('focus', () => field.placeholder = '');
+    field.addEventListener('blur', () => field.placeholder = placeholder);
+};
+
 // Validates form field on supplied events
 const addFormFieldValidationEventListeners = (events, field, errorMessage) => {
     events.forEach(eventName => {
@@ -68,8 +76,10 @@ const validateFormFields = form => {
         // Gets error message for form field
         const errorMessage = errorMessages[index];
 
+        togglePlaceholder(field);
+
         addFormFieldValidationEventListeners(
-            ['focus', 'blur', 'keyup'],
+            ['focus', 'blur', 'keydown', 'keyup'],
             field,
             errorMessage
         );
