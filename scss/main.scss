@@ -1,285 +1,166 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-* {
-  --primary-color-light: hsl(0, 100%, 74%);
-  --primary-color-dark: hsl(154, 59%, 51%);
-  --accent-color: hsl(248, 32%, 49%);
-  --neutral-color-dark: hsl(249, 10%, 26%);
-  --neutral-color-light: hsl(246, 25%, 77%);
-  --font-family: Poppins, sans-serif;
-  --main-font-color: #fff;
-  --body-font-size: 10px;
-  --main-font-size: 1.6rem;
-  --regular-weight: 400;
-  --medium-weight: 500;
-  --semibold-weight: 600;
-  --bold-weight: 700;
-}
+// Global variables
+  // Colors
+  $primaryColorLight: hsl(0, 100%, 74%);
+  $primaryColorDark: hsl(154, 59%, 51%);
+  $accentColor: hsl(248, 32%, 49%);
+  $neutralColorDark: hsl(249, 10%, 26%);
+  $neutralColorLight: hsl(246, 25%, 77%);
+  $mainFontColor: #fff;
+  $boxShadow: 0 .8rem  hsla(0, 0%, 0%, .2);
+  // Fonts
+  $fontFamily: Poppins, sans-serif;
+  $baseFontSize: 10;
+  $mainFontSize: 1.6rem;
+  $regularWeight: 400;
+  $mediumWeight: 500;
+  $semiboldWeight: 600;
+  $boldWeight: 700;
+
+  // Images
+  $defaultBgImg: url(../images/bg-intro-mobile.png);
+  $desktopBgImg: url(../images/bg-intro-desktop.png);
+
+  // Distances & sizes
+  $defaultPadding: 1.5 * $mainFontSize;
+  $mainPadding: 1.5625 * $mainFontSize 2.4rem;
+  $borderRadius: 1rem;
+  $buttonPadding: 2rem 5rem;
 
 html {
-  font-size: 10px; /* Base font size, font size in rem is relative to this */
-}
-
-html,
-body {
-  color: var(--main-font-color);
-  font-family: var(--font-family);
-  /**
-   * Basic Browser Reset
-   */
-  height: 100%;
+  background: $primaryColorLight $defaultBgImg top center;
+  box-sizing: border-box;
+  color: $mainFontColor;
+  font-family: $fontFamily;
+  font-size: $baseFontSize+px;
   margin: 0;
   padding: 0;
-  width: 100%;
-}
-
-p {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: var(--primary-color-light) url(../images/bg-intro-mobile.png);
-
-  display: grid;
-  grid-auto-rows: auto;
-  grid-auto-columns: auto;
-
-  font-size: var(--main-font-size);
-  font-weight: var(--regular-weight);
   text-align: center;
+  width: 100%;//100vw;
+  height: 100vh;
+}
+body {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: $mainFontSize;
+  margin: 0 auto;
+  padding: 2.5rem 0 0;//$mainPadding;
+  min-width: 350px;
+  transition: max-width .5s ease-in-out;
 }
 
-footer {
-  grid-row: 3/4;
-  grid-column: 1/2;
-}
-
-/**
- * Main Containers
- */
 header,
 main,
 footer,
 form {
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 2.5rem;
+  padding: $mainPadding;
   width: 100%;
 }
 
 header {
-  display: grid;
-  grid-auto-rows: auto;
-  grid-auto-columns: auto;
-  grid-row: 1/2;
-  grid-column: 1/2;
-  grid-row-gap: 2.5rem;
-  padding: 0 auto;
-}
-header h1 {
-  font-weight: var(--bold-weight);
-  font-size: 2.5rem;
-
-  grid-column: 1/2;
-  grid-row: 1/2;
-  justify-self: center;
-  align-self: start;
-
-  line-height: 1.2;
-  margin: 3em 0 0 0;
-  padding: 0;
-}
-
-p.intro {
-  grid-column: 1/2;
-  grid-row: 2/3;
-  justify-self: center;
-  align-self: start;
-
-  margin: 0;
-  padding: 0 0 3em 0;
-}
-
-main {
-  grid-row: 2/3;
-  grid-column: 1/2;
-  display: grid;
-  grid-auto-rows: auto;
-  grid-auto-columns: auto;
-  grid-column-gap: 0;
-  grid-row-gap: 2.3rem;
-}
-
-p.try-it-free {
-  grid-row: 1/2;
-  grid-column: 1/2;
-}
-
-/**
- * Form
- */
-form {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 .8rem hsla(0, 0%, 0%, .2);
-  display: grid;
-  grid-row-gap: 1.6rem;
-
-  padding: 2rem;
-  width: 100%;
-}
-
-form input {
-  border: .1rem #dedede solid;
-  border-radius: .5rem;
-  font-weight: var(--semibold-weight);
-  padding: 1em;
-  margin: 0;
-}
-
-form input:focus,
-form input:active {
-  border-color: var(--neutral-color-dark);
-  box-shadow: none;
-  color: #000;
-  outline: 0;
-}
-
-form button {
-  background-color: var(--primary-color-dark);
-  border: 0;
-  border-radius: .5rem;
-  box-shadow: 0 .4rem  hsl(154, 59%, 42%);
-  color: var(--main-font-color);
-  font-size: var(--main-font-size);
-  letter-spacing: .05rem;
-  line-height: 1;
-  text-transform: uppercase;
-  padding: 2rem 5rem 1.5rem;
-}
-
-form input,
-form button {
-  font-size: 1.4rem;
-}
-
-form p {
-  padding: 0 3rem;
-  color: var(--neutral-color-light);
-  font-size: 1.1rem;
-  font-weight: var(--medium-weight);
-  line-height: 2;
-}
-
-form a {
-  color: var(--primary-color-light);
-  font-weight: var(--bold-weight);
-  text-decoration: none;
-}
-
-form label {
-  display: none; /* Todo: Position left outside of screen */
-}
-
-/**
- * Font decorations
- */
-b {
-  font-weight: var(--semibold-weight);
-}
-
-.try-it-free {
-  background-color: var(--accent-color);
-  border-radius: 1rem;
-  box-shadow: 0 .8rem  hsla(0, 0%, 0%, .2);
-  padding: 2rem 5rem;
-}
-
-/**
- * Media Queries
- */
-/**
- * Mobile devices
- */
-@media screen and (min-width: 426px) {
-  header,
-  main,
-  footer {
-    width: 90%;
-    max-width: 800px;
-  }
-}
-
-@media screen and (min-width: 616px) {
-  header,
-  main,
-  footer {
-    width: 80%;
-  }
-}
-
-/**
- * Desktop
- */
-@media screen and (min-width: 768px) {
-  body {
-    background-image: url(../images/bg-intro-desktop.png);
-  }
-}
-
-@media screen and (min-width: 900px) {
-  body {
-    grid-template-columns: 1fr 1fr;
-    margin: 0 auto;
+  padding-left: $defaultPadding + .1;
+  padding-right: $defaultPadding + .1;
+  h1 {
+    font-size: 2.74rem;
+    font-weight: $boldWeight;
+    line-height: 1.32;
+    margin: 1.5em 0 0;
     padding: 0;
-    width: 100%;
-    max-width: 1110px;
-  }
-
-  header {
-    grid-column: 1/2;
-    grid-row: 1/3;
-    text-align: left;
-    grid-row-gap: 1em;
-  }
-  header h1 {
-    justify-self: left;
-    align-self: end;
-
-    font-size: 3em;
-
-    line-height: 1.2;
-    margin: 3em 0 0 0;
-    padding: 0;
+    transition: font-size .5s ease-in-out;
   }
 
   p.intro {
-    grid-column: 1/2;
-    grid-row: 2/3;
+    line-height: 1.6;
+    margin: 1.5em 0 0;
+    padding: 0;
+
+  }
+}
+
+.no-break {
+  white-space: nowrap;
+}
+
+main {
+  p.try-it-free {
+    background-color: $accentColor;
+    border-radius: $borderRadius;
+    box-shadow: $boxShadow;
+    margin: $defaultPadding/2 0 $defaultPadding + .1;
+    padding: $buttonPadding;
+    b {
+      font-weight: $semiboldWeight;
+    }
   }
 
-  main {
-    grid-column: 2/4;
-    grid-row: 2/3;
-  }
+  form {
+    background-color: $mainFontColor;
+    border-radius: $borderRadius;
+    box-shadow: $boxShadow;
+    font-size: $mainFontSize;
+    padding-bottom: $defaultPadding/2;
+    input, button {
+      border-radius: $borderRadius/2;
+      box-sizing: border-box;
+    }
 
-  .try-it-free {
-    align-self: end;
-  }
+    input {
+      background: none right .85em center; // To use with transitions
+      border: .1rem #dedede solid;
+      font-size: $mainFontSize - .2;
+      font-weight: $boldWeight;
+      margin: 0 0 1.2em;
+      padding: 1.3em;
+      width: 100%;
 
-  footer {
-    grid-column: 1/4;
-  }
+      transition: background 1s ease-in-out;
+    }
 
-  /**
-   * Main Containers Desktop
-   */
-  header,
-  main,
-  footer {
-    width: 100%;
-    max-width: 1440px;
+    button {
+      background-color: $primaryColorDark;
+      border: 0;
+      box-shadow: 0 .4rem  hsl(154, 59%, 42%); // Todo % of $primaryColorDark
+      color: $mainFontColor;
+      font-size: $mainFontSize;
+      letter-spacing: .05rem;
+      line-height: 1;
+      padding: 2rem 1em 1.5rem;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    p {
+      color: $neutralColorLight;
+      font-size: 1.1rem;
+      font-weight: $mediumWeight;
+      line-height: 2;
+      padding: 0 3rem;
+      transition: font-size .5s ease-in-out;
+      a {
+        color: $primaryColorLight;
+        font-weight: $boldWeight;
+        text-decoration: none;
+      }
+    }
+
+    p.error-message {
+        display: none;
+        color: $primaryColorLight;
+        font-style: italic;
+        line-height: 2;
+        margin-top: -1.5em;
+        padding: 0;
+        text-align: right;
+        transition: opacity .5s ease-in-out;
+
+        opacity: 0;
+    }
   }
 }
 
@@ -289,24 +170,107 @@ b {
 input.validation-error,
 input.validation-error:focus {
   background: no-repeat url(../images/icon-error.svg) right .85em center;
-  border-color: var(--primary-color-light);
-  color: var(--primary-color-light);
+  border-color: $primaryColorLight;
+  color: $primaryColorLight;
   padding-right: 3.5em;
-}
 
-.error-message {
-  color: var(--primary-color-light);
-  font-style: italic;
-  line-height: 2;
-  margin-top: -1em;
-  padding: 0;
-  text-align: right;
-  visibility: hidden;
+  transition: background 1s ease-in-out;
 }
-
 input.validation-error + p.error-message {
-  visibility: visible;
+  display: block;
+  opacity: 1;
+  transition: display .5s ease-in-out;
 }
 
-.attribution { font-size: 11px; text-align: center; }
-.attribution a { color: hsl(228, 45%, 44%); }
+footer {
+  p {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    padding: 0;
+  }
+}
+
+
+  // Hide labels
+  label {
+    position: absolute;
+    visibility: hidden;
+  }
+
+
+  @media (min-width: 418px) {
+    header {
+      h1 {
+        font-size: 2.2em;
+        transition: font-size .5s ease-in-out;
+      }
+    }
+  }
+
+  @media (min-width: 500px) {
+    body {
+      max-width: 500px;
+      transition: max-width .5s ease-in-out;
+    }
+
+    form {
+      p {
+        font-size: 1.3rem;
+        transition: font-size .5s ease-in-out;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    body {
+      max-width: 600px;
+      transition: max-width .5s ease-in-out;
+    }
+    header {
+      h1 {
+        font-size: 2.6em;
+        //transition: font-size .5s ease-in-out;
+      }
+    }
+
+    main {
+      form {
+        padding: 4rem;
+
+        input {
+          margin: 0 0 1.5em;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 900px) {
+    html {
+      background-image: $desktopBgImg;
+    }
+    body {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1160px;
+      //transition: max-width .5s ease-in-out;
+    }
+
+    header {
+      text-align: left;
+      //width: 52.734375%
+    }
+    main {
+      //width: 50.78125%;
+      //flex-basis: 52.734375%;
+    }
+    header, main {
+      width: 50%;
+      //max-width: 540px;
+    }
+
+    footer {
+      width: 100%;
+    }
+  }
